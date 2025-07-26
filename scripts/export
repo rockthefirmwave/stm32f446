@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd baremetal
+make clean
+make
+cp -r /home/alexey/repos/stm32f446/baremetal/main.bin /mnt/z/dev/embedded/image
+        
