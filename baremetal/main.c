@@ -31,30 +31,17 @@ void uart2_print(const char* s) {
 }
 
 
-int main(void)
+int main2(void)
 {
-//      uart2_init();
-
-//     volatile int heartbeat __attribute__((used)) = 0;
-
-//     while (1) {
-//         uart2_print("Hello from STM32F446RE!\r\n");
-
-//         for (heartbeat = 0; heartbeat < 1000000; ++heartbeat); // задержка
-//     }
-//    return heartbeat;
-    // Включаем тактирование GPIOA (питание порта A)
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 
-    // Настраиваем PA5 как output
     GPIOA->MODER &= ~(3 << (5 * 2));
     GPIOA->MODER |= (1 << (5 * 2));
 
     while (1)
     {
-        // Мигание светодиодом на PA5
         GPIOA->ODR ^= (1 << 5);
-        for (volatile int i = 0; i < 500000; i++)
+        for (volatile int i = 0; i < 1500000; i++)
             ;
     }
 }
